@@ -145,7 +145,7 @@ You will be sharing the resources of a single Greenplum Instance. So it is impor
 2. ETL processing  
    i. Time  
    ii. Frequency  
-   iii. Number of paralell Greenplum Connections needed  
+   iii. Number of parallel Greenplum Connections needed  
 3. Reporting  
    i. Number of concurrent users  
    ii. Average report run-times or ETAs  
