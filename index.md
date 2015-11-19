@@ -11,13 +11,21 @@ mode        : selfcontained # {standalone, draft}
 knit        : slidify::knit2slides
 ---
 
-## Greenplum is now open source
+## Greenplum Database is now open source
+  
+<br/>
+<br/>
+  
+1. Visit [http://greenplum.org](http://greenplum.org). There is a link to get a sandbox VM with pretty much everything installed.  
 
-1. Visit [http://greenplum.org](http://greenplum.org). There is a link to get a sandbox VM with pretty much everything installed.
-2. View the code repository at [https://github.com/greenplum-db/gpdb](https://github.com/greenplum-db/gpdb)
-3. Get the documentation from [http://gpdb.docs.pivotal.io](http://gpdb.docs.pivotal.io)
-4. Subscribe to the mailing lists if you want to remain informed about all recent changes or proposed changes. 
-5. Contribute!
+2. View the code repository at [https://github.com/greenplum-db/gpdb](https://github.com/greenplum-db/gpdb)  
+
+3. Get the documentation from [http://gpdb.docs.pivotal.io](http://gpdb.docs.pivotal.io)  
+
+4. Subscribe to the mailing lists if you want to remain informed about all recent changes or proposed changes.  
+
+5. Contribute!  
+
 
 --- .class #id 
 
