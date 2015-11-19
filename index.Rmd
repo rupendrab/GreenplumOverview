@@ -93,3 +93,42 @@ If the counts are too uneven, consider re-adjusting your distribution policy.
 ---
 
 ## Table Design Fundamentals (Data Types)
+<br/>
+Consider using the most efficient data type for your requirement. You will have smaller storage footprint (Remember BDA is a shared environment) and faster and more efficient processing.
+
+1. Prefer smallint, int, bigint, real, double precision over the generic numeric data types.  
+2. Choose the correct date/time data type: date, timestamp, timestamp with time zone.  
+3. Read more about datatypes here: [http://www.postgresql.org/docs/8.2/static/datatype.html](http://www.postgresql.org/docs/8.2/static/datatype.html)
+4. There is a boolean data type available for true/false values.
+5. When using sequences to auto-generate Ids, use a high cache value (100+) for the sequence.  
+6. Greenplum supports more complex data structures like arrays and XML as data types. Make sure you have a good plan and justification before using them.  
+
+---  
+
+## Table Design Fundamentals (Partitioning)
+
+<br/>
+Greenplum lets you fine tune storage, performance and archival through partitioning. This is a way to subdivide the data for a table within each segment database using user-defined buckets. Both list and range partitioning are supported along with multi-level partitions.  
+
+Please keep the following in mind when deciding to partition a table:  
+
+1. Because the data is already divided using distribution, further subdivision using partitions may be more inefficient. Consider a 100GB table in a 96 segment database DCA. Data is already split to 1GB segments. Applying 10 partitions on top of that will not help a lot, but will come with additional partition management tasks.  
+
+2. For column-oriented tables, data is further subdivided by columns. Consider the table size before partitioning a column-oriented table.  
+
+---  
+
+## Table Design Fundamentals (Orientation and Compression)
+
+Tables can be further optimized by adding orientation and compression.
+
+**Orientation**:  
+1. Heap => Regular tables, use for tables that are updated, deleted very often and truncate / insert is not viable.  
+2. Append Optimized => Storage is optimized, but updates / deletes should be less frequent.  
+3. Columnar => Append optimized be default. Stores every column separately, so when you select a few columns from a table, IO is faster.  
+
+**Compression**:  
+1. Tables can be compressed using a QUICKLZ, RLE_TYPE(columnar only) or ZLIB algorithm.
+2. Compression level of 1-9 can be specified  
+3. Each partition can be compressed differently.  
+
