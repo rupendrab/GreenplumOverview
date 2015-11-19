@@ -105,6 +105,60 @@ iii. Pararrel / Distributed server administration through gpssh and gpscp  </p><
   <!-- Presenter Notes -->
 </slide>
 
+<slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>Table Design Fundamentals (Distribution Policy)</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Data for all tables in Greenplum are distributed to the segment databases. The master server simply has the table structure and statistical information regarding the table.  </p>
+
+<p>Data is distributed using hash-bucketing. The user creating the table has control over the parameters (columns) that would be used for this hash bucketing. For efficient processing and storage, we need to make sure that the data is distributed reasonably evenly to the NM segment databases. The following strategies may be employed to find a good distribution key for a table. Multiple columns can be used for a distribution key.</p>
+
+<ol>
+<li>Do not use column(s) with few distinct values. Consider the extreme case where a column has one unique value. All data will remain in one segment database.<br></li>
+<li>Do not use columns where a few values have a very high chance of occuring compared to others.<br></li>
+<li>In general, use values that are fairly unique.<br></li>
+<li>Avoid using too many columns as distribution key.<br></li>
+</ol>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-5" style="background:;">
+  <hgroup>
+    <h2>Table Design Fundamentals (Distribution Policy)</h2>
+  </hgroup>
+  <article data-timings="">
+    <ol>
+<li>For large tables frequetly joined to each other, use the join key (or part of the join key) as the distribution key.<br></li>
+<li>If you have a primary key, the distribution key must be the primary key columns or a subset.</li>
+<li>If you are not able to come up with any strategy, use random distribution.<br></li>
+<li>Check how well your data is distributed using the system generated column gp_segment_id.<br></li>
+</ol>
+
+<pre><code class="r">select gp_segment_id,  
+       count(*)  
+from   my_table  
+group by gp_segment_id;  
+</code></pre>
+
+<p>If the counts are too uneven, consider re-adjusting your distribution policy.</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-6" style="background:;">
+  <hgroup>
+    <h2>Table Design Fundamentals (Data Types)</h2>
+  </hgroup>
+  <article data-timings="">
+    
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
     <slide class="backdrop"></slide>
   </slides>
   <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
@@ -125,6 +179,24 @@ iii. Pararrel / Distributed server administration through gpssh and gpscp  </p><
       <a href="#" target="_self" rel='tooltip' 
         data-slide=3 title='Greenplum Server Architecture'>
          3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Table Design Fundamentals (Distribution Policy)'>
+         4
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=5 title='Table Design Fundamentals (Distribution Policy)'>
+         5
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=6 title='Table Design Fundamentals (Data Types)'>
+         6
       </a>
     </li>
   </ul>

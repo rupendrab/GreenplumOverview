@@ -58,3 +58,39 @@ Everything is distributed to multiple servers. Scalability is linear to number o
 4. Each of the N segment servers run 2M segment databases, M primary and M mirror databases. Each primary segment database (NM of them) has a corresponding mirror database that resides on a different server. The mirroring happens in real time so they are always synchronized. If / When a segment server fails, the corresponding mirror databases take over so the system runs.  
 5. For the DCA V1 Greenplum appliances running at IRS, N = 16, M = 6. For the new DCA V2s, M = 8.  
 6. The Greenplum Database Architecture is explained in detail in [Official Greenplum Documentation](http://gpdb.docs.pivotal.io/4360/admin_guide/intro/arch_overview.html)  
+
+--- 
+
+## Table Design Fundamentals (Distribution Policy)
+
+Data for all tables in Greenplum are distributed to the segment databases. The master server simply has the table structure and statistical information regarding the table.  
+
+Data is distributed using hash-bucketing. The user creating the table has control over the parameters (columns) that would be used for this hash bucketing. For efficient processing and storage, we need to make sure that the data is distributed reasonably evenly to the NM segment databases. The following strategies may be employed to find a good distribution key for a table. Multiple columns can be used for a distribution key.
+
+1. Do not use column(s) with few distinct values. Consider the extreme case where a column has one unique value. All data will remain in one segment database.  
+2. Do not use columns where a few values have a very high chance of occuring compared to others.  
+3. In general, use values that are fairly unique.  
+4. Avoid using too many columns as distribution key.  
+
+---
+
+## Table Design Fundamentals (Distribution Policy)
+
+5. For large tables frequetly joined to each other, use the join key (or part of the join key) as the distribution key.  
+6. If you have a primary key, the distribution key must be the primary key columns or a subset.
+7. If you are not able to come up with any strategy, use random distribution.  
+8. Check how well your data is distributed using the system generated column gp_segment_id.  
+
+
+```r
+select gp_segment_id,  
+       count(*)  
+from   my_table  
+group by gp_segment_id;  
+```
+
+If the counts are too uneven, consider re-adjusting your distribution policy.
+
+---
+
+## Table Design Fundamentals (Data Types)
