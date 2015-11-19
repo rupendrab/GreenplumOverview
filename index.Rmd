@@ -132,3 +132,22 @@ Tables can be further optimized by adding orientation and compression.
 2. Compression level of 1-9 can be specified  
 3. Each partition can be compressed differently.  
 
+---  
+
+## BDA Environment Considerations
+
+BDA is a shared environment
+
+You will be sharing the resources of a single Greenplum Instance. So it is important to plan, optimize and discuss viability of the following:  
+
+1. Storage Requirement  
+2. ETL processing  
+   i. Time  
+   ii. Frequency
+   iii. Number of paralell Greenplum Connections needed  
+3. Reporting  
+   i. Number of concurrent users  
+   ii. Average report run-times or ETAs  
+   iii. Negative TIN requirements  
+   
+---

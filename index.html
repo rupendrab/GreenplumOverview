@@ -210,6 +210,33 @@ Greenplum lets you fine tune storage, performance and archival through partition
   <!-- Presenter Notes -->
 </slide>
 
+<slide class="" id="slide-9" style="background:;">
+  <hgroup>
+    <h2>BDA Environment Considerations</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>BDA is a shared environment</p>
+
+<p>You will be sharing the resources of a single Greenplum Instance. So it is important to plan, optimize and discuss viability of the following:  </p>
+
+<ol>
+<li>Storage Requirement<br></li>
+<li>ETL processing<br>
+i. Time<br>
+ii. Frequency
+iii. Number of paralell Greenplum Connections needed<br></li>
+<li>Reporting<br>
+i. Number of concurrent users<br>
+ii. Average report run-times or ETAs<br>
+iii. Negative TIN requirements<br></li>
+</ol>
+
+<hr>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
     <slide class="backdrop"></slide>
   </slides>
   <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
@@ -260,6 +287,12 @@ Greenplum lets you fine tune storage, performance and archival through partition
       <a href="#" target="_self" rel='tooltip' 
         data-slide=8 title='Table Design Fundamentals (Orientation and Compression)'>
          8
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=9 title='BDA Environment Considerations'>
+         9
       </a>
     </li>
   </ul>
