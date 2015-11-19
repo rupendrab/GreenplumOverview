@@ -129,8 +129,8 @@ Tables can be further optimized by adding orientation and compression.
 3. Columnar => Append optimized be default. Stores every column separately, so when you select a few columns from a table, IO is faster.  
 
 **Compression**:  
-1. Tables can be compressed using a QUICKLZ, RLE_TYPE(columnar only) or ZLIB algorithm.
-2. Compression level of 1-9 can be specified  
+1. Tables can be compressed using a QUICKLZ, RLE_TYPE(columnar only) or ZLIB algorithm.  
+2. Compression level of 1-9 can be specified.  
 3. Each partition can be compressed differently.  
 
 ---  
