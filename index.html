@@ -63,10 +63,26 @@
 
 <slide class="class" id="id" style="background:;">
   <hgroup>
-    <h2>Slide 2</h2>
+    <h2>Greenplum as MPP</h2>
   </hgroup>
   <article data-timings="">
-    
+    <p>Everything is distributed to multiple servers. Scalability is linear to number of servers.    </p>
+
+<ol>
+<li><p>Data<br>
+i. More data storage (Big Data)<br>
+ii. Faster read and write performance compared to a centralized storage system ike SAN.</p></li>
+<li><p>Processing<br>
+i. Distributed Data Load<br>
+ii. Distributed query Processing<br>
+iii. Even within a single server, data is processed in parallel to acheieve faster processing<br>
+iv. Query Processor ensures that bulk of the processing happen independently in servers</p></li>
+<li><p>Database Management<br>
+i. Parallel / Distributed backup and restore<br>
+ii. Parallel / Distributed Table analysis and space management<br>
+iii. Pararrel / Distributed server administration through gpssh and gpscp  </p></li>
+</ol>
+
   </article>
   <!-- Presenter Notes -->
 </slide>
@@ -83,7 +99,7 @@
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=2 title='Slide 2'>
+        data-slide=2 title='Greenplum as MPP'>
          2
       </a>
     </li>

@@ -29,8 +29,24 @@ knit        : slidify::knit2slides
 
 --- .class #id 
 
-## Slide 2
+## Greenplum as MPP
 
+Everything is distributed to multiple servers. Scalability is linear to number of servers.    
+
+  1. Data  
+    i. More data storage (Big Data)  
+    ii. Faster read and write performance compared to a centralized storage system ike SAN.
+  
+  2. Processing  
+    i. Distributed Data Load   
+    ii. Distributed query Processing  
+    iii. Even within a single server, data is processed in parallel to acheieve faster processing  
+    iv. Query Processor ensures that bulk of the processing happen independently in servers
+  
+  3. Database Management  
+    i. Parallel / Distributed backup and restore  
+    ii. Parallel / Distributed Table analysis and space management  
+    iii. Pararrel / Distributed server administration through gpssh and gpscp  
 
 
 
