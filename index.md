@@ -48,5 +48,13 @@ Everything is distributed to multiple servers. Scalability is linear to number o
     ii. Parallel / Distributed Table analysis and space management  
     iii. Pararrel / Distributed server administration through gpssh and gpscp  
 
+--- 
 
+## Greenplum Server Architecture
 
+1. 2 Master Servers, N segment servers all connected through private high speed network (10GBPS)  
+2. The master server is the interface to the external world. A user connects to the master and submits queries (SQLs) to the master. The standby master server acts as a failover server for the master.  
+3. The master server runs a single PostgreSQL database.
+4. Each of the N segment servers run 2M segment databases, M primary and M mirror databases. Each primary segment database (NM of them) has a corresponding mirror database that resides on a different server. The mirroring happens in real time so they are always synchronized. If / When a segment server fails, the corresponding mirror databases take over so the system runs.  
+5. For the DCA V1 Greenplum appliances running at IRS, N = 16, M = 6. For the new DCA V2s, M = 8.  
+6. The Greenplum Database Architecture is explained in detail in [Official Greenplum Documentation](http://gpdb.docs.pivotal.io/4360/admin_guide/intro/arch_overview.html)  

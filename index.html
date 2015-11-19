@@ -87,6 +87,24 @@ iii. Pararrel / Distributed server administration through gpssh and gpscp  </p><
   <!-- Presenter Notes -->
 </slide>
 
+<slide class="" id="slide-3" style="background:;">
+  <hgroup>
+    <h2>Greenplum Server Architecture</h2>
+  </hgroup>
+  <article data-timings="">
+    <ol>
+<li>2 Master Servers, N segment servers all connected through private high speed network (10GBPS)<br></li>
+<li>The master server is the interface to the external world. A user connects to the master and submits queries (SQLs) to the master. The standby master server acts as a failover server for the master.<br></li>
+<li>The master server runs a single PostgreSQL database.</li>
+<li>Each of the N segment servers run 2M segment databases, M primary and M mirror databases. Each primary segment database (NM of them) has a corresponding mirror database that resides on a different server. The mirroring happens in real time so they are always synchronized. If / When a segment server fails, the corresponding mirror databases take over so the system runs.<br></li>
+<li>For the DCA V1 Greenplum appliances running at IRS, N = 16, M = 6. For the new DCA V2s, M = 8.<br></li>
+<li>The Greenplum Database Architecture is explained in detail in <a href="http://gpdb.docs.pivotal.io/4360/admin_guide/intro/arch_overview.html">Official Greenplum Documentation</a><br></li>
+</ol>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
     <slide class="backdrop"></slide>
   </slides>
   <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
@@ -101,6 +119,12 @@ iii. Pararrel / Distributed server administration through gpssh and gpscp  </p><
       <a href="#" target="_self" rel='tooltip' 
         data-slide=2 title='Greenplum as MPP'>
          2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='Greenplum Server Architecture'>
+         3
       </a>
     </li>
   </ul>
